@@ -88,11 +88,11 @@ async function adminUsuarios(request: Request): Promise<Response> {
       headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" },
     });
   if (request.method !== "POST") return json({ erro: "Método não permitido." }, 405);
-  const base = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const base = process.env["SUPABASE_URL"];
+  const key = process.env["SUPABASE_SERVICE_ROLE_KEY"];
   if (!base || !key) return json({ erro: "Servidor sem configuração do banco." }, 500);
   const svc: Record<string, string> = { apikey: key, "content-type": "application/json" };
-  if (!key.startsWith("sb_")) svc.Authorization = `Bearer ${key}`;
+  if (!key.startsWith("sb_")) svc["Authorization"] = `Bearer ${key}`;
 
   const jwt = (request.headers.get("authorization") ?? "").replace(/^Bearer\s+/i, "");
   if (!jwt) return json({ erro: "Faça login de novo." }, 401);
@@ -113,17 +113,17 @@ async function adminUsuarios(request: Request): Promise<Response> {
   } catch {
     return json({ erro: "Pedido inválido." }, 400);
   }
-  const acao = String(corpo.acao ?? "");
+  const acao = String(corpo["acao"] ?? "");
 
   if (acao === "criar") {
-    const nome = String(corpo.nome ?? "")
+    const nome = String(corpo["nome"] ?? "")
       .trim()
       .replace(/\s+/g, " ");
-    const email = String(corpo.email ?? "")
+    const email = String(corpo["email"] ?? "")
       .trim()
       .toLowerCase();
-    const senha = String(corpo.senha ?? "");
-    const papel = corpo.papel === "admin" ? "admin" : "consultor";
+    const senha = String(corpo["senha"] ?? "");
+    const papel = corpo["papel"] === "admin" ? "admin" : "consultor";
     if (nome.length < 3 || !/^\S+@\S+\.\S+$/.test(email)) return json({ erro: "Informe nome e e-mail válido." }, 400);
     if (senha.length < 8) return json({ erro: "A senha precisa ter pelo menos 8 caracteres." }, 400);
     const pn = await fetch(`${base}/rest/v1/perfis?select=id,nome`, { headers: svc });
@@ -163,11 +163,11 @@ async function adminUsuarios(request: Request): Promise<Response> {
     return json({ ok: true, id: novo.id });
   }
 
-  const id = String(corpo.id ?? "");
+  const id = String(corpo["id"] ?? "");
   if (!/^[0-9a-f-]{36}$/i.test(id)) return json({ erro: "Pessoa não encontrada." }, 400);
 
   if (acao === "senha") {
-    const senha = String(corpo.senha ?? "");
+    const senha = String(corpo["senha"] ?? "");
     if (senha.length < 8) return json({ erro: "A senha precisa ter pelo menos 8 caracteres." }, 400);
     const r = await fetch(`${base}/auth/v1/admin/users/${id}`, {
       method: "PUT",
