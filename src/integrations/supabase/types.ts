@@ -14,13 +14,70 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      perfis: {
+        Row: {
+          criado_em: string
+          email: string
+          id: string
+          nome: string
+          papel: string
+          status: string
+        }
+        Insert: {
+          criado_em?: string
+          email: string
+          id: string
+          nome: string
+          papel?: string
+          status?: string
+        }
+        Update: {
+          criado_em?: string
+          email?: string
+          id?: string
+          nome?: string
+          papel?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      registros: {
+        Row: {
+          atualizado_em: string
+          atualizado_por: string | null
+          cliente_id: number
+          colecao: string
+          dados: Json
+          id: number
+        }
+        Insert: {
+          atualizado_em?: string
+          atualizado_por?: string | null
+          cliente_id: number
+          colecao: string
+          dados: Json
+          id: number
+        }
+        Update: {
+          atualizado_em?: string
+          atualizado_por?: string | null
+          cliente_id?: number
+          colecao?: string
+          dados?: Json
+          id?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      eh_admin: { Args: never; Returns: boolean }
+      eh_membro: { Args: never; Returns: boolean }
+      meu_nome: { Args: never; Returns: string }
+      pode_ver_cliente: { Args: { cid: number }; Returns: boolean }
+      portal_cliente: { Args: { tok: string }; Returns: Json }
     }
     Enums: {
       [_ in never]: never
