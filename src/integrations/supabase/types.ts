@@ -68,6 +68,30 @@ export type Database = {
         }
         Relationships: []
       }
+      responsaveis: {
+        Row: {
+          contato: string | null
+          criado_em: string
+          funcao: string | null
+          id: number
+          nome: string
+        }
+        Insert: {
+          contato?: string | null
+          criado_em?: string
+          funcao?: string | null
+          id: number
+          nome: string
+        }
+        Update: {
+          contato?: string | null
+          criado_em?: string
+          funcao?: string | null
+          id?: number
+          nome?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
