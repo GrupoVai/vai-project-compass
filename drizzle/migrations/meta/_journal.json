@@ -15,6 +15,13 @@
       "when": 1791305262196,
       "tag": "0001_grant_permissoes",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791306570059,
+      "tag": "0002_criar_funcao_novo_perfil",
+      "breakpoints": true
     }
   ]
 }
