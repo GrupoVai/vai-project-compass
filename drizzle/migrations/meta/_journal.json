@@ -8,6 +8,13 @@
       "when": 1791305121278,
       "tag": "0000_vai_projetos_acessos",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791305262196,
+      "tag": "0001_grant_permissoes",
+      "breakpoints": true
     }
   ]
 }
