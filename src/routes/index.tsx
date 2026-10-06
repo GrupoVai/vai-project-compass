@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
@@ -15,10 +16,17 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const [src, setSrc] = useState<string | null>(null);
+  useEffect(() => {
+    const url = URL.createObjectURL(new Blob([APP_HTML], { type: "text/html" }));
+    setSrc(url);
+    return () => URL.revokeObjectURL(url);
+  }, []);
+  if (!src) return null;
   return (
     <iframe
       title="VAI Projetos"
-      srcDoc={APP_HTML}
+      src={src}
       style={{ position: "fixed", inset: 0, width: "100%", height: "100%", border: 0, display: "block" }}
     />
   );
