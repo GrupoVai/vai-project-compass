@@ -29,6 +29,13 @@
       "when": 1791314884487,
       "tag": "0003_criar_tabela_responsaveis",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1791491016901,
+      "tag": "0004_vai_projetos_demo_cobrancas",
+      "breakpoints": true
     }
   ]
 }

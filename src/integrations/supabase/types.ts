@@ -14,6 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      cobrancas: {
+        Row: {
+          criado_em: string
+          criado_por: string | null
+          dados: Json
+          id: number
+        }
+        Insert: {
+          criado_em?: string
+          criado_por?: string | null
+          dados: Json
+          id: number
+        }
+        Update: {
+          criado_em?: string
+          criado_por?: string | null
+          dados?: Json
+          id?: number
+        }
+        Relationships: []
+      }
       perfis: {
         Row: {
           criado_em: string
@@ -22,6 +43,7 @@ export type Database = {
           nome: string
           papel: string
           status: string
+          whatsapp: string | null
         }
         Insert: {
           criado_em?: string
@@ -30,6 +52,7 @@ export type Database = {
           nome: string
           papel?: string
           status?: string
+          whatsapp?: string | null
         }
         Update: {
           criado_em?: string
@@ -38,6 +61,7 @@ export type Database = {
           nome?: string
           papel?: string
           status?: string
+          whatsapp?: string | null
         }
         Relationships: []
       }
@@ -102,6 +126,7 @@ export type Database = {
       meu_nome: { Args: never; Returns: string }
       pode_ver_cliente: { Args: { cid: number }; Returns: boolean }
       portal_cliente: { Args: { tok: string }; Returns: Json }
+      sou_responsavel_no_projeto: { Args: { pid: number }; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
