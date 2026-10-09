@@ -76,7 +76,7 @@ export default {
 
 /* ===================== VAI Projetos =====================
    "/"      → sistema (login real, dados no Lovable Cloud)
-   "/demo"  → demonstração (dados fictícios no navegador)
+   "/demo"  → demonstração (dados fictícios no navegador, versão 4)
    "/api/admin-usuarios" → ações do administrador na equipe */
 function paginaHTML(html: string): Response {
   return new Response(html, {
