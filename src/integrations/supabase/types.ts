@@ -14,6 +14,18 @@ export type Database = {
   }
   public: {
     Tables: {
+      admins_fixos: {
+        Row: {
+          email: string
+        }
+        Insert: {
+          email: string
+        }
+        Update: {
+          email?: string
+        }
+        Relationships: []
+      }
       cobrancas: {
         Row: {
           criado_em: string
@@ -124,6 +136,7 @@ export type Database = {
       eh_admin: { Args: never; Returns: boolean }
       eh_membro: { Args: never; Returns: boolean }
       meu_nome: { Args: never; Returns: string }
+      meu_status: { Args: never; Returns: string }
       pode_ver_cliente: { Args: { cid: number }; Returns: boolean }
       portal_cliente: { Args: { tok: string }; Returns: Json }
       sou_responsavel_no_projeto: { Args: { pid: number }; Returns: boolean }
