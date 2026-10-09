@@ -43,6 +43,13 @@
       "when": 1791545701278,
       "tag": "0005_cadastro_liberado_automatico",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1791546552351,
+      "tag": "0006_aprovacao_acessos",
+      "breakpoints": true
     }
   ]
 }
