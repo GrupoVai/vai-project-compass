@@ -256,7 +256,8 @@ async function arquivosEquipe(request: Request): Promise<Response> {
   let r = await enviar();
   if (!r.ok) {
     const t = await r.text();
-    if (/bucket/i.test(t) && /not.?found/i.test(t)) {
+    {
+      // primeiro envio: cria o bucket privado (se já existir, a criação só é ignorada) e tenta de novo
       await fetch(`${cfg.base}/storage/v1/bucket`, {
         method: "POST",
         headers: { ...cfg.svc, "content-type": "application/json" },
