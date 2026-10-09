@@ -1,5 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { createFileRoute } from "@tanstack/react-start";
+import { createFileRoute } from "@tanstack/react-router";
 
 /* E-mails de aviso do acesso (pedido recebido, aviso aos admins, aprovado, recusado).
    Os textos já estão definidos aqui; o envio só passa a acontecer quando o domínio de e-mail
