@@ -36,6 +36,13 @@
       "when": 1791491016901,
       "tag": "0004_vai_projetos_demo_cobrancas",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1791545701278,
+      "tag": "0005_cadastro_liberado_automatico",
+      "breakpoints": true
     }
   ]
 }
