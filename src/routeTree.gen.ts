@@ -10,33 +10,43 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiAvisoAcessoRouteImport } from './routes/api/aviso-acesso'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAvisoAcessoRoute = ApiAvisoAcessoRouteImport.update({
+  id: '/api/aviso-acesso',
+  path: '/api/aviso-acesso',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/aviso-acesso': typeof ApiAvisoAcessoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/aviso-acesso': typeof ApiAvisoAcessoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/aviso-acesso': typeof ApiAvisoAcessoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/api/aviso-acesso'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/api/aviso-acesso'
+  id: '__root__' | '/' | '/api/aviso-acesso'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiAvisoAcessoRoute: typeof ApiAvisoAcessoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +58,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/aviso-acesso': {
+      id: '/api/aviso-acesso'
+      path: '/api/aviso-acesso'
+      fullPath: '/api/aviso-acesso'
+      preLoaderRoute: typeof ApiAvisoAcessoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiAvisoAcessoRoute: ApiAvisoAcessoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
