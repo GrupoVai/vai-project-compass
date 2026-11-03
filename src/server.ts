@@ -201,7 +201,7 @@ async function adminUsuarios(request: Request): Promise<Response> {
    PUT/DELETE /api/arquivos?p=&a=  → time (login), só em projeto que a pessoa enxerga (regras do banco)
    GET /api/arquivo?t=&a=          → download pelo token do link do cliente (time e cliente) */
 const BUCKET = "entregaveis";
-const SB_PUB = "sb_publishable_dfh93Pu8sC5532QLEmz38Q_bx-Kh8LC";
+const SB_PUB = "sb_publishable_z4U__HfxMjVVT5hTzVSRmQ_1M8ye-ZU";
 function cfgBanco() {
   const base = process.env["SUPABASE_URL"];
   const key = process.env["SUPABASE_SERVICE_ROLE_KEY"];
