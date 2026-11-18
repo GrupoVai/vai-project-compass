@@ -4,9 +4,6 @@ import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
 import { PAGINA_DEMO } from "./paginas/demo";
 import { PAGINA_SISTEMA } from "./paginas/sistema";
-import { EXEMPLOS_1 } from "./paginas/exemplos1";
-import { EXEMPLOS_2 } from "./paginas/exemplos2";
-import { EXEMPLOS_3 } from "./paginas/exemplos3";
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
@@ -56,11 +53,6 @@ export default {
       if (caminho === "/api/arquivo") return await arquivoCliente(request);
       if (caminho === "/") return paginaHTML(PAGINA_SISTEMA);
       if (caminho === "/demo" || caminho === "/demo/") return paginaHTML(PAGINA_DEMO);
-      if (caminho === "/vai-exemplos.js") {
-        return new Response(EXEMPLOS_1 + EXEMPLOS_2 + EXEMPLOS_3, {
-          headers: { "content-type": "application/javascript; charset=utf-8", "cache-control": "public, max-age=3600" },
-        });
-      }
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
       return await normalizeCatastrophicSsrResponse(response);
@@ -76,7 +68,7 @@ export default {
 
 /* ===================== VAI Projetos =====================
    "/"      → sistema (login real, dados no Lovable Cloud)
-   "/demo"  → demonstração (dados fictícios no navegador, versão 4)
+   "/demo"  → demonstração do 2.0 (dados fictícios no navegador)
    "/api/admin-usuarios" → ações do administrador na equipe */
 function paginaHTML(html: string): Response {
   return new Response(html, {
