@@ -8,6 +8,13 @@
       "when": 1795045955395,
       "tag": "0007_vai_projetos_2_0",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1795046188528,
+      "tag": "0008_vai_projetos_2_0",
+      "breakpoints": true
     }
   ]
 }
