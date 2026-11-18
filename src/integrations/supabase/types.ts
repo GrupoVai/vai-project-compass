@@ -49,30 +49,51 @@ export type Database = {
       }
       perfis: {
         Row: {
+          cargo: string | null
+          cliente: string | null
           criado_em: string
           email: string
+          extra: string | null
+          funcoes: string[]
           id: string
+          nivel: string | null
           nome: string
           papel: string
+          setor: string | null
           status: string
+          verticais: string[]
           whatsapp: string | null
         }
         Insert: {
+          cargo?: string | null
+          cliente?: string | null
           criado_em?: string
           email: string
+          extra?: string | null
+          funcoes?: string[]
           id: string
+          nivel?: string | null
           nome: string
           papel?: string
+          setor?: string | null
           status?: string
+          verticais?: string[]
           whatsapp?: string | null
         }
         Update: {
+          cargo?: string | null
+          cliente?: string | null
           criado_em?: string
           email?: string
+          extra?: string | null
+          funcoes?: string[]
           id?: string
+          nivel?: string | null
           nome?: string
           papel?: string
+          setor?: string | null
           status?: string
+          verticais?: string[]
           whatsapp?: string | null
         }
         Relationships: []
@@ -128,6 +149,160 @@ export type Database = {
         }
         Relationships: []
       }
+      v2_avulsas: {
+        Row: {
+          criado_em: string
+          criado_por: string | null
+          dados: Json
+          id: string
+          resp: string
+        }
+        Insert: {
+          criado_em?: string
+          criado_por?: string | null
+          dados?: Json
+          id?: string
+          resp: string
+        }
+        Update: {
+          criado_em?: string
+          criado_por?: string | null
+          dados?: Json
+          id?: string
+          resp?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "v2_avulsas_resp_fkey"
+            columns: ["resp"]
+            isOneToOne: false
+            referencedRelation: "perfis"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      v2_modelos: {
+        Row: {
+          criado_em: string
+          criado_por: string | null
+          dados: Json
+          id: string
+        }
+        Insert: {
+          criado_em?: string
+          criado_por?: string | null
+          dados: Json
+          id: string
+        }
+        Update: {
+          criado_em?: string
+          criado_por?: string | null
+          dados?: Json
+          id?: string
+        }
+        Relationships: []
+      }
+      v2_projetos: {
+        Row: {
+          atualizado_em: string
+          atualizado_por: string | null
+          cliente: string
+          criado_em: string
+          criado_por: string | null
+          dados: Json
+          gestor: string | null
+          id: string
+          membros: string[]
+          status: string
+          versao: number
+          vertical: string
+        }
+        Insert: {
+          atualizado_em?: string
+          atualizado_por?: string | null
+          cliente: string
+          criado_em?: string
+          criado_por?: string | null
+          dados?: Json
+          gestor?: string | null
+          id?: string
+          membros?: string[]
+          status?: string
+          versao?: number
+          vertical: string
+        }
+        Update: {
+          atualizado_em?: string
+          atualizado_por?: string | null
+          cliente?: string
+          criado_em?: string
+          criado_por?: string | null
+          dados?: Json
+          gestor?: string | null
+          id?: string
+          membros?: string[]
+          status?: string
+          versao?: number
+          vertical?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "v2_projetos_gestor_fkey"
+            columns: ["gestor"]
+            isOneToOne: false
+            referencedRelation: "perfis"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      v2_rotinas: {
+        Row: {
+          chave: string
+          em: string
+          feito: boolean
+          por: string | null
+        }
+        Insert: {
+          chave: string
+          em?: string
+          feito?: boolean
+          por?: string | null
+        }
+        Update: {
+          chave?: string
+          em?: string
+          feito?: boolean
+          por?: string | null
+        }
+        Relationships: []
+      }
+      v2_vendas: {
+        Row: {
+          atualizado_em: string
+          cliente: string
+          criado_em: string
+          criado_por: string | null
+          dados: Json
+          id: string
+        }
+        Insert: {
+          atualizado_em?: string
+          cliente: string
+          criado_em?: string
+          criado_por?: string | null
+          dados?: Json
+          id?: string
+        }
+        Update: {
+          atualizado_em?: string
+          cliente?: string
+          criado_em?: string
+          criado_por?: string | null
+          dados?: Json
+          id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -140,6 +315,19 @@ export type Database = {
       pode_ver_cliente: { Args: { cid: number }; Returns: boolean }
       portal_cliente: { Args: { tok: string }; Returns: Json }
       sou_responsavel_no_projeto: { Args: { pid: number }; Returns: boolean }
+      v2_acao: {
+        Args: { p_acao: string; p_ativ?: string; p_dados?: Json; p_id: string }
+        Returns: Json
+      }
+      v2_admin: { Args: never; Returns: boolean }
+      v2_arr: { Args: { j: Json }; Returns: Json }
+      v2_comercial: { Args: never; Returns: boolean }
+      v2_edita: { Args: { pg: string; pv: string }; Returns: boolean }
+      v2_eu_cliente: { Args: never; Returns: string }
+      v2_eu_nivel: { Args: never; Returns: string }
+      v2_eu_verticais: { Args: never; Returns: string[] }
+      v2_portal: { Args: never; Returns: Json }
+      v2_time: { Args: never; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
