@@ -64,6 +64,13 @@
       "when": 1795122665174,
       "tag": "0015_admin_fixo_confirmado_no_login",
       "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1795123105864,
+      "tag": "0016_admin_fixo_confirmado_no_login",
+      "breakpoints": true
     }
   ]
 }
