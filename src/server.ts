@@ -226,7 +226,23 @@ async function arquivosEquipe(request: Request): Promise<Response> {
   });
   if (vr.status === 401) return jsonR({ erro: "Faça login de novo." }, 401);
   const vis = vr.ok ? ((await vr.json()) as unknown[]) : [];
-  if (!vis.length)
+  // ver não basta: só quem pode editar o projeto (mesma regra de alteração do banco) mexe nos arquivos
+  let podeEditar = false;
+  if (vis.length) {
+    const pr = await fetch(`${cfg.base}/rest/v1/registros?select=cliente_id&colecao=eq.projetos&id=eq.${pid}`, {
+      headers: cfg.svc,
+    });
+    const cid = pr.ok ? ((await pr.json()) as { cliente_id: number }[])[0]?.cliente_id : undefined;
+    if (cid !== undefined) {
+      const rr = await fetch(`${cfg.base}/rest/v1/rpc/pode_ver_cliente`, {
+        method: "POST",
+        headers: { apikey: SB_PUB, Authorization: `Bearer ${jwt}`, "content-type": "application/json" },
+        body: JSON.stringify({ cid }),
+      });
+      podeEditar = rr.ok && (await rr.json()) === true;
+    }
+  }
+  if (!vis.length || !podeEditar)
     return jsonR(
       { erro: "Sem acesso a este projeto (ou o projeto ainda está sendo salvo, tente de novo em instantes)." },
       403,

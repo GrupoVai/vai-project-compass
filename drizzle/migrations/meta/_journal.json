@@ -50,6 +50,13 @@
       "when": 1795090287049,
       "tag": "0013_equipe_todos_cadastros",
       "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1795098596999,
+      "tag": "0014_admin_fixo_exige_email_confirmado",
+      "breakpoints": true
     }
   ]
 }

@@ -376,6 +376,7 @@ export type Database = {
       v2_garantir_perfil: { Args: never; Returns: string }
       v2_lidera_projeto: { Args: { pid: string }; Returns: boolean }
       v2_portal: { Args: never; Returns: Json }
+      v2_sincronizar_cadastros: { Args: never; Returns: number }
       v2_time: { Args: never; Returns: boolean }
     }
     Enums: {
