@@ -4,6 +4,7 @@ import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
 import { PAGINA_DEMO } from "./paginas/demo";
 import { PAGINA_SISTEMA } from "./paginas/sistema";
+import { limitRequest } from "./lib/request-limiter";
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
@@ -47,6 +48,8 @@ function isH3SwallowedErrorBody(body: string): boolean {
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
+      const limited = limitRequest(request);
+      if (limited) return limited;
       const caminho = new URL(request.url).pathname;
       if (caminho === "/api/admin-usuarios") return await adminUsuarios(request);
       if (caminho === "/api/arquivos") return await arquivosEquipe(request);

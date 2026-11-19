@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Apply best-effort request limits at the server entry before dispatch; custom HTML/API handlers bypass TanStack middleware. Keep counters bounded and treat limits as per-instance, not distributed DDoS protection.
