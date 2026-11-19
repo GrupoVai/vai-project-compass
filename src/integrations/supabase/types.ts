@@ -181,6 +181,53 @@ export type Database = {
           },
         ]
       }
+      v2_indicadores: {
+        Row: {
+          atualizado_em: string
+          atualizado_por: string | null
+          faturamento: number | null
+          id: string
+          mes: string
+          meta: number | null
+          obs: string | null
+          projeto_id: string
+          ticket_medio: number | null
+          vendas: number | null
+        }
+        Insert: {
+          atualizado_em?: string
+          atualizado_por?: string | null
+          faturamento?: number | null
+          id?: string
+          mes: string
+          meta?: number | null
+          obs?: string | null
+          projeto_id: string
+          ticket_medio?: number | null
+          vendas?: number | null
+        }
+        Update: {
+          atualizado_em?: string
+          atualizado_por?: string | null
+          faturamento?: number | null
+          id?: string
+          mes?: string
+          meta?: number | null
+          obs?: string | null
+          projeto_id?: string
+          ticket_medio?: number | null
+          vendas?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "v2_indicadores_projeto_id_fkey"
+            columns: ["projeto_id"]
+            isOneToOne: false
+            referencedRelation: "v2_projetos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       v2_modelos: {
         Row: {
           criado_em: string
@@ -327,6 +374,7 @@ export type Database = {
       v2_eu_nivel: { Args: never; Returns: string }
       v2_eu_verticais: { Args: never; Returns: string[] }
       v2_garantir_perfil: { Args: never; Returns: string }
+      v2_lidera_projeto: { Args: { pid: string }; Returns: boolean }
       v2_portal: { Args: never; Returns: Json }
       v2_time: { Args: never; Returns: boolean }
     }
