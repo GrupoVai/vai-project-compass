@@ -326,6 +326,7 @@ export type Database = {
       v2_eu_cliente: { Args: never; Returns: string }
       v2_eu_nivel: { Args: never; Returns: string }
       v2_eu_verticais: { Args: never; Returns: string[] }
+      v2_garantir_perfil: { Args: never; Returns: string }
       v2_portal: { Args: never; Returns: Json }
       v2_time: { Args: never; Returns: boolean }
     }
