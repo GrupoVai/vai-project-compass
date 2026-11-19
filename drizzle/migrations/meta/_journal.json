@@ -57,6 +57,13 @@
       "when": 1795098596999,
       "tag": "0014_admin_fixo_exige_email_confirmado",
       "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "7",
+      "when": 1795122665174,
+      "tag": "0015_admin_fixo_confirmado_no_login",
+      "breakpoints": true
     }
   ]
 }
