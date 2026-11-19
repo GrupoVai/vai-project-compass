@@ -56,3 +56,7 @@ begin
 end $$;
 revoke all on function public.v2_garantir_perfil() from public;
 grant execute on function public.v2_garantir_perfil() to authenticated;
+
+-- só usuários logados chamam estas funções
+revoke execute on function public.v2_sincronizar_cadastros() from anon;
+revoke execute on function public.v2_garantir_perfil() from anon;
