@@ -181,6 +181,50 @@ export type Database = {
           },
         ]
       }
+      v2_cultura: {
+        Row: {
+          atualizado_em: string
+          atualizado_por: string | null
+          dados: Json
+          icone: string | null
+          id: string
+          ordem: number
+          pai: string | null
+          tipo: string
+          titulo: string
+        }
+        Insert: {
+          atualizado_em?: string
+          atualizado_por?: string | null
+          dados?: Json
+          icone?: string | null
+          id: string
+          ordem?: number
+          pai?: string | null
+          tipo: string
+          titulo?: string
+        }
+        Update: {
+          atualizado_em?: string
+          atualizado_por?: string | null
+          dados?: Json
+          icone?: string | null
+          id?: string
+          ordem?: number
+          pai?: string | null
+          tipo?: string
+          titulo?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "v2_cultura_pai_fkey"
+            columns: ["pai"]
+            isOneToOne: false
+            referencedRelation: "v2_cultura"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       v2_indicadores: {
         Row: {
           atualizado_em: string
