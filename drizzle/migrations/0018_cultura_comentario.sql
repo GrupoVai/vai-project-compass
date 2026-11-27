@@ -1,0 +1,1 @@
+comment on table public.v2_cultura is 'Aba Cultura (Central VAI)';
